@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from '../redux/actions';
+import ProjectItem from './ProjectItem';
+
 
 const ProjectList = ({ projects, loading, error, fetchProjects }) => {
   useEffect(() => {
@@ -21,13 +23,14 @@ const ProjectList = ({ projects, loading, error, fetchProjects }) => {
       <h2>List of Projects</h2>
       <ul>
         {projects.map((project) => (
-          <li key={project.id}>
-            <strong>{project.name}</strong>
-            <p>{project.description}</p>
-            <p>Requested Amount: ${project.requestedAmount}</p>
-            <p>Collected Amount: ${project.collectedAmount}</p>
-            {/* Add other project details as needed */}
-          </li>
+          <ProjectItem key={project.id} project={project} />
+          // <li key={project.id}>
+          //   <strong>{project.name}</strong>
+          //   <p>{project.description}</p>
+          //   <p>Requested Amount: ${project.requestedAmount}</p>
+          //   <p>Collected Amount: ${project.collectedAmount}</p>
+          //   {/* Add other project details as needed */}
+          // </li>
         ))}
       </ul>
     </div>
