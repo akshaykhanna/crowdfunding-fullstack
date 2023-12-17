@@ -61,3 +61,7 @@ VALUES ('Sample Project', 'Description for the sample project', 1000.00, 0.00, '
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:842)
+2023-12-17 05:59:22.438175+05:30 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000a[*]SELECT * FROM DONATIONS"; SQL statement:
+SELECT * FROM USERS 
+SELECT * FROM DONATIONS [42000-224]
