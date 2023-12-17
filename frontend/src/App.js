@@ -3,28 +3,20 @@ import ProjectList from "./compoenents/ProjectList";
 import Layout from "./compoenents/Layout";
 import "bootstrap/dist/css/bootstrap.min.css";
 import CreateProject from "./compoenents/CreateProject";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TopNav from "./compoenents/TopNav";
 
 function App() {
   return (
     <div>
       <Layout>
-        <Tabs
-          defaultActiveKey="profile"
-          id="uncontrolled-tab-example"
-          className="mb-3"
-        >
-          <Tab eventKey="home" title="Home">
-            <ProjectList />
-          </Tab>
-          <Tab eventKey="Create" title="Create">
-            <CreateProject />
-          </Tab>
-          <Tab eventKey="contact" title="Contact" disabled>
-            Tab content for Contact
-          </Tab>
-        </Tabs>
+        <Router>
+          <TopNav></TopNav>
+          <Routes>
+            <Route path="/" element={<ProjectList />} />
+            <Route path="/create" element={<CreateProject />}/>
+          </Routes>
+        </Router>
       </Layout>
     </div>
   );
