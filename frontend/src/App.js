@@ -1,5 +1,5 @@
-import logo from "./logo.svg";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import "./App.css";
 import ProjectList from "./compoenents/ProjectList";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +9,11 @@ function App() {
   return (
     <div>
       <TopNav />
-      <ProjectList />
+      <Routes>
+        <Route path="/" element={<ProjectList />}>
+          <Route index element={<ProjectList />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
