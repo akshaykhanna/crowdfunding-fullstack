@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 
 export default function TopNav() {
@@ -11,8 +12,12 @@ export default function TopNav() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/myproject">Projects</Nav.Link>
-            <Nav.Link href="/createproject">Link</Nav.Link>
+            <Nav.Link>
+              <Link to="/myproject">My Projects</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/create">Create</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
