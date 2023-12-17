@@ -8,6 +8,8 @@ import craft_demo.crowdfunding.repos.DonationRepository;
 import craft_demo.crowdfunding.repos.ProjectRepository;
 import craft_demo.crowdfunding.repos.UserRepository;
 import craft_demo.crowdfunding.util.NotFoundException;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,7 @@ public class DonationService {
     public Long create(final DonationDTO donationDTO) {
         final Donation donation = new Donation();
         mapToEntity(donationDTO, donation);
+        this.updateCollectedAmount(donationDTO.getProject(), donationDTO.getDonationAmount());
         return donationRepository.save(donation).getId();
     }
 
@@ -74,6 +77,17 @@ public class DonationService {
                 .orElseThrow(() -> new NotFoundException("donor not found"));
         donation.setDonor(donor);
         return donation;
+    }
+
+    private void updateCollectedAmount(final Long id, final BigDecimal amount) {
+        final Project project = projectRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
+        project.setCollectedAmount(project.getCollectedAmount().add((amount)));
+        // check if collected amount is greater than requested amount
+        if (project.getCollectedAmount().compareTo(project.getRequestedAmount()) >= 0) {
+            project.setState("archived");
+        }
+        projectRepository.save(project);
     }
 
 }
