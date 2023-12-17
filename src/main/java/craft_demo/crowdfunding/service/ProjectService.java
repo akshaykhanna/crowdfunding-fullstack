@@ -69,7 +69,8 @@ public class ProjectService {
         project.setDescription(projectDTO.getDescription());
         project.setRequestedAmount(projectDTO.getRequestedAmount());
         project.setCollectedAmount(projectDTO.getCollectedAmount());
-        project.setState(projectDTO.getState());
+        var state = project.getState();
+        project.setState(state == null ? "open" : state);
         final User createdBy = projectDTO.getCreatedBy() == null ? null : userRepository.findById(projectDTO.getCreatedBy())
                 .orElseThrow(() -> new NotFoundException("createdBy not found"));
         project.setCreatedBy(createdBy);

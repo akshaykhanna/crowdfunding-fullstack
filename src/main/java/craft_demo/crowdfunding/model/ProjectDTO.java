@@ -29,7 +29,6 @@ public class ProjectDTO {
     @Schema(type = "string", example = "93.08")
     private BigDecimal collectedAmount;
 
-    @NotNull
     @Size(max = 50)
     private String state;
 

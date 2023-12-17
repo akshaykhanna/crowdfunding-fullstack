@@ -45,7 +45,7 @@ public class Project {
     @Column(precision = 12, scale = 2)
     private BigDecimal collectedAmount;
 
-    @Column(nullable = false, length = 50)
+    @Column(length = 50, nullable = false, columnDefinition = "VARCHAR(50) DEFAULT 'open'")
     private String state;
 
     @ManyToOne(fetch = FetchType.LAZY)
