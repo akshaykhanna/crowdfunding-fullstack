@@ -65,3 +65,6 @@ VALUES ('Sample Project', 'Description for the sample project', 1000.00, 0.00, '
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM USERS \000d\000a[*]SELECT * FROM DONATIONS"; SQL statement:
 SELECT * FROM USERS 
 SELECT * FROM DONATIONS [42000-224]
+2023-12-17 18:31:11.572737+05:30 jdbc[33]: exception
+org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Scrub Daddy is a cleaning product company best known for eponymous sponges it... (347)"; SQL statement:
+insert into projects (collected_amount,created_by_id,description,name,requested_amount,state,id) values (?,?,?,?,?,?,?) [22001-224]

@@ -1,28 +1,34 @@
 // src/components/CreateProject.js
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { connect } from 'react-redux';
+import { createProject } from '../redux/actions';
 
-const CreateProject = () => {
+const CreateProject = ({ createProject }) => {
   const [projectData, setProjectData] = useState({
-    name: "",
-    description: "",
+    name: '',
+    description: '',
+    requestedAmount: '',
+    collectedAmount: '',
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setProjectData({
       ...projectData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic to handle the project creation (e.g., API call)
-    console.log("Project Data:", projectData);
+    createProject(projectData);
     // Reset the form after submission
     setProjectData({
-      name: "",
-      description: "",
+      name: '',
+      description: '',
+      requestedAmount: '',
+      collectedAmount: '',
     });
   };
 
@@ -54,7 +60,7 @@ const CreateProject = () => {
         <Form.Group controlId="requestedAmount">
           <Form.Label>Requested Amount</Form.Label>
           <Form.Control
-            type="number"
+            type="text"
             name="requestedAmount"
             value={projectData.requestedAmount}
             onChange={handleChange}
@@ -64,7 +70,7 @@ const CreateProject = () => {
         <Form.Group controlId="collectedAmount">
           <Form.Label>Collected Amount</Form.Label>
           <Form.Control
-            type="number"
+            type="text"
             name="collectedAmount"
             value={projectData.collectedAmount}
             onChange={handleChange}
@@ -79,4 +85,8 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+const mapDispatchToProps = (dispatch) => ({
+  createProject: (projectData) => dispatch(createProject(projectData)),
+});
+
+export default connect(null, mapDispatchToProps)(CreateProject);
