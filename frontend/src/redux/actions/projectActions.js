@@ -1,6 +1,5 @@
-// src/redux/actions.js
 import axios from 'axios';
-import API_BASE_URL from '../config/apiConfig';
+import API_BASE_URL from '../../config/apiConfig';
 
 export const FETCH_PROJECTS_REQUEST = 'FETCH_PROJECTS_REQUEST';
 export const FETCH_PROJECTS_SUCCESS = 'FETCH_PROJECTS_SUCCESS';

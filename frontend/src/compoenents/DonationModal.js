@@ -1,17 +1,23 @@
 // DonationModal.js
-import React, { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from 'react-redux';
+import { submitDonation } from '../redux/actions/donationActions';
 
-const DonationModal = ({ project , show, handleClose }) => {
+const DonationModal = ({ project, show, handleClose }) => {
+  const projectName = project ? project.name : "";
+  const dispatch = useDispatch();
   const [donationAmount, setDonationAmount] = useState('');
-  const projectName = project.name;
-  const handleDonationSubmit = (e) => {
-    e.preventDefault();
-    console.log(`Donation submitted for ${projectName}: $${donationAmount}`);
-    // Add your donation submission logic here
+  const donor = useSelector((state) => state.donation.username);
+  const handleSubmit = () => {
+    const donationData = {
+      donationAmount: parseFloat(donationAmount),
+      project: project.id,
+      donor,
+    };
 
-    // Close the modal
-    handleClose();
+    dispatch(submitDonation(donationData));
+    handleClose(); // Close the modal after submission
   };
 
   return (
@@ -20,7 +26,7 @@ const DonationModal = ({ project , show, handleClose }) => {
         <Modal.Title>Donate to {projectName}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form onSubmit={handleDonationSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group controlId="donationAmount">
             <Form.Label>Enter Donation Amount</Form.Label>
             <Form.Control

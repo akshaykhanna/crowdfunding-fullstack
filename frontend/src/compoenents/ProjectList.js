@@ -22,15 +22,8 @@ const ProjectList = ({ projects, loading, error, fetchProjects }) => {
     <div>
       <h2>List of Projects</h2>
       <ul>
-        {projects.map((project) => (
+        {projects && projects.map((project) => (
           <ProjectItem key={project.id} project={project} />
-          // <li key={project.id}>
-          //   <strong>{project.name}</strong>
-          //   <p>{project.description}</p>
-          //   <p>Requested Amount: ${project.requestedAmount}</p>
-          //   <p>Collected Amount: ${project.collectedAmount}</p>
-          //   {/* Add other project details as needed */}
-          // </li>
         ))}
       </ul>
     </div>
@@ -38,9 +31,9 @@ const ProjectList = ({ projects, loading, error, fetchProjects }) => {
 };
 
 const mapStateToProps = (state) => ({
-  projects: state.projects,
-  loading: state.loading,
-  error: state.error,
+  projects: state.project.projects,
+  loading: state.project.loading,
+  error: state.project.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

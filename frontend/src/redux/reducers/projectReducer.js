@@ -1,4 +1,3 @@
-// src/redux/reducers.js
 import {
   FETCH_PROJECTS_REQUEST,
   FETCH_PROJECTS_SUCCESS,
@@ -6,7 +5,7 @@ import {
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_FAILURE,
-} from "./actions";
+} from "../actions/projectActions";
 
 const initialState = {
   projects: [],
