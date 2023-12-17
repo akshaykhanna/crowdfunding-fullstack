@@ -1,7 +1,21 @@
-// ProjectList.js
-import React from 'react';
+// src/components/ProjectList.js
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchProjects } from '../redux/actions';
 
-const ProjectList = ({ projects = [] }) => {
+const ProjectList = ({ projects, loading, error, fetchProjects }) => {
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
   return (
     <div>
       <h2>List of Projects</h2>
@@ -20,4 +34,14 @@ const ProjectList = ({ projects = [] }) => {
   );
 };
 
-export default ProjectList;
+const mapStateToProps = (state) => ({
+  projects: state.projects,
+  loading: state.loading,
+  error: state.error,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchProjects: () => dispatch(fetchProjects()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectList);
