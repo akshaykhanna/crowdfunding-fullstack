@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
+import Login from "./Login";
 
 export default function TopNav() {
   return (
@@ -21,6 +22,9 @@ export default function TopNav() {
               <Nav.Link>Create</Nav.Link>
             </LinkContainer>
           </Nav>
+        </Navbar.Collapse>
+        <Navbar.Collapse className="justify-content-end">
+          <Login />
         </Navbar.Collapse>
       </Container>
     </Navbar>
