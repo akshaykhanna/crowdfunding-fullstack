@@ -1,6 +1,11 @@
 // redux/reducers/authReducer.js
 
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/authActions';
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+} from "../actions/authActions";
 
 const initialState = {
   isAuthenticated: false,
@@ -33,6 +38,15 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         loading: false,
         error: action.payload.error,
+      };
+
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        username: null,
+        loading: false,
+        error: null,
       };
 
     default:

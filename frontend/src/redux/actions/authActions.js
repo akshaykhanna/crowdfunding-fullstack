@@ -4,6 +4,7 @@ import API_BASE_URL from '../../config/apiConfig';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGOUT = 'LOGOUT';
 
 // Example action creators
 export const loginRequest = () => ({
@@ -20,7 +21,9 @@ export const loginFailure = (error) => ({
   payload: { error },
 });
 
-;
+export const logout = () => ({
+  type: LOGOUT,
+});
 
 export const login = (username, password) => {
   return (dispatch) => {

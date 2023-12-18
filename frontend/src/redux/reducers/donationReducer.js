@@ -2,7 +2,6 @@ import { SUBMIT_DONATION_SUCCESS, SUBMIT_DONATION_FAIL } from '../actions/donati
 
 const initialState = {
   donationResult: null,
-  username: 'mcube',
   error: null,
 };
 

@@ -8,7 +8,7 @@ const DonationModal = ({ project, show, handleClose }) => {
   const projectName = project ? project.name : "";
   const dispatch = useDispatch();
   const [donationAmount, setDonationAmount] = useState('');
-  const donor = useSelector((state) => state.donation.username);
+  const donor = useSelector((state) => state.auth.username);
   const handleSubmit = () => {
     const donationData = {
       donationAmount: parseFloat(donationAmount),
