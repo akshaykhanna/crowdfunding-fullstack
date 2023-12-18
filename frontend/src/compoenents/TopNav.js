@@ -4,8 +4,10 @@ import Navbar from "react-bootstrap/Navbar";
 import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 import Login from "./Login";
+import { useSelector } from "react-redux";
 
 export default function TopNav() {
+  const auth = useSelector((state) => state.auth);
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -15,16 +17,20 @@ export default function TopNav() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <LinkContainer to="/my-projects">
-              <Nav.Link>My Projects</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/create">
-              <Nav.Link>Create</Nav.Link>
-            </LinkContainer>
+            {auth.username && (
+              <LinkContainer to="/my-projects">
+                <Nav.Link>My Projects</Nav.Link>
+              </LinkContainer>
+            )}
+            {auth.username && (
+              <LinkContainer to="/create">
+                <Nav.Link>Create</Nav.Link>
+              </LinkContainer>
+            )}
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end">
-          <Login />
+          <Login auth={auth} />
         </Navbar.Collapse>
       </Container>
     </Navbar>

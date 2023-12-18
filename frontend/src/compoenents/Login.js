@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 import LoginModal from "./LoginModal";
-import { useSelector, useDispatch } from "react-redux";
 import { logout } from '../redux/actions';
 
-const Login = () => {
-  // Handle login logic here
+const Login = ({auth}) => {
+  const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
   console.log(auth);
 
   const handleLoginButtonClick = () => {
     if (auth.isAuthenticated) {
       dispatch(logout());
+      navigate('/');
     } else setShowLoginModal(true);
   };
 

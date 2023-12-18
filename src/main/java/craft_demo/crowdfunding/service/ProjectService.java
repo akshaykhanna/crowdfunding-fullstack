@@ -30,6 +30,13 @@ public class ProjectService {
                 .toList();
     }
 
+    public List<ProjectDTO> findByUsername(String username) {
+        final List<Project> projects = projectRepository.findByCreatedByUsername(username);
+        return projects.stream()
+                .map(project -> mapToDTO(project, new ProjectDTO()))
+                .toList();
+    }
+
     public ProjectDTO get(final Long id) {
         return projectRepository.findById(id)
                 .map(project -> mapToDTO(project, new ProjectDTO()))

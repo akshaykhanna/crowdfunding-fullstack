@@ -68,3 +68,9 @@ SELECT * FROM DONATIONS [42000-224]
 2023-12-17 18:31:11.572737+05:30 jdbc[33]: exception
 org.h2.jdbc.JdbcSQLDataException: Value too long for column "DESCRIPTION CHARACTER VARYING(255)": "U&'Scrub Daddy is a cleaning product company best known for eponymous sponges it... (347)"; SQL statement:
 insert into projects (collected_amount,created_by_id,description,name,requested_amount,state,id) values (?,?,?,?,?,?,?) [22001-224]
+2023-12-18 08:49:39.770944+05:30 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TEST" not found; SQL statement:
+UPDATE TEST SET NAME='Hi' WHERE ID=1 [42102-224]
+2023-12-18 08:50:11.762309+05:30 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE PROJECTS  SET CREATED_BY_ID ='mcube' WHERE CREATED_BY_ID IS [*]EMPTY"; expected "NOT, OF, JSON, NULL, DISTINCT, TRUE, FALSE, UNKNOWN"; SQL statement:
+UPDATE PROJECTS  SET CREATED_BY_ID ='mcube' WHERE CREATED_BY_ID IS EMPTY [42001-224]

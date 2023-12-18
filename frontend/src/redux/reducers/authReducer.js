@@ -8,8 +8,8 @@ import {
 } from "../actions/authActions";
 
 const initialState = {
-  isAuthenticated: false,
-  username: null,
+  isAuthenticated: localStorage.getItem('username') ? true : false,
+  username: localStorage.getItem('username'),
   loading: false,
   error: null,
 };
@@ -24,6 +24,7 @@ const authReducer = (state = initialState, action) => {
       };
 
     case LOGIN_SUCCESS:
+      localStorage.setItem('username', action.payload.username);
       return {
         ...state,
         isAuthenticated: true,
@@ -33,6 +34,7 @@ const authReducer = (state = initialState, action) => {
       };
 
     case LOGIN_FAILURE:
+      localStorage.removeItem('username');
       return {
         ...state,
         isAuthenticated: false,

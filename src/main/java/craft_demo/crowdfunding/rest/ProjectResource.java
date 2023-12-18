@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,8 +30,12 @@ public class ProjectResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjectDTO>> getAllProjects() {
-        return ResponseEntity.ok(projectService.findAll());
+    public ResponseEntity<List<ProjectDTO>> getAllProjects(@RequestParam(required = false) String username) {
+        if (username != null && !username.isEmpty()) {
+            return ResponseEntity.ok(projectService.findByUsername(username));
+        } else {
+            return ResponseEntity.ok(projectService.findAll());
+        }
     }
 
     @GetMapping("/{id}")

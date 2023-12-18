@@ -14,6 +14,9 @@ function App() {
           <TopNav></TopNav>
           <Routes>
             <Route path="/" element={<ProjectList />} />
+            <Route path="/my-projects" element={<ProjectList showMyProjectsOnly/>} />
+            <Route path="/projects/:id" element={<ProjectList showMyProjectsOnly/>} />
+            <Route path="/create" element={<CreateProject />}/>
             <Route path="/create" element={<CreateProject />}/>
           </Routes>
         </Router>

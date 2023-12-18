@@ -33,8 +33,8 @@ const CreateProject = ({ createProject }) => {
   };
 
   return (
-    <div>
-      <h2>Create a New Project</h2>
+    <div className="mt-3">
+      <h4>Create a New Project</h4>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="projectName">
           <Form.Label>Project Name</Form.Label>
@@ -77,7 +77,7 @@ const CreateProject = ({ createProject }) => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button className="mt-3" variant="primary" type="submit">
           Create Project
         </Button>
       </Form>

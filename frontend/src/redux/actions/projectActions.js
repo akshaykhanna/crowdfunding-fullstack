@@ -22,10 +22,11 @@ export const fetchProjectsFailure = (error) => ({
   payload: error,
 });
 
-export const fetchProjects = () => {
+export const fetchProjects = (username) => {
+  const queryParam = username ? `?username=${username}` : '';
   return (dispatch) => {
     dispatch(fetchProjectsRequest());
-    axios.get(`${API_BASE_URL}/api/projects`)
+    axios.get(`${API_BASE_URL}/api/projects${queryParam}`)
       .then((response) => {
         console.log(response.data);
         const projects = response.data;
@@ -52,8 +53,11 @@ export const createProjectFailure = (error) => ({
 });
 
 export const createProject = (projectData) => {
-  console.log(projectData);
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const username = state.auth.username;
+    projectData.createdBy = username;
+    console.log(projectData);
     dispatch(createProjectRequest());
     axios
       .post(`${API_BASE_URL}/api/projects`, projectData) // Adjust the API endpoint

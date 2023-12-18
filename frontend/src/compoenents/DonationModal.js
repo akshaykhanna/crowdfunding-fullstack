@@ -36,7 +36,7 @@ const DonationModal = ({ project, show, handleClose }) => {
               onChange={(e) => setDonationAmount(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="mt-2" variant="primary" type="submit">
             Donate
           </Button>
         </Form>
