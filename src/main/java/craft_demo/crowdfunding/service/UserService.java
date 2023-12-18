@@ -68,4 +68,12 @@ public class UserService {
         return userRepository.existsByUsernameIgnoreCase(username);
     }
 
+    public boolean isValidLogin(String username, String password) {
+        // Retrieve the user by username
+        User user = userRepository.findByUsername(username).orElse(null);
+
+        // Check if the user exists and the password matches
+        return user != null && user.getPassword().equals(password);
+    }
+
 }

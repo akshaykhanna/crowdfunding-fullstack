@@ -1,7 +1,23 @@
 # Crowdfunding
 
-This app was created with Bootify.io - tips on working with the code [can be found here](https://bootify.io/next-steps/).
-Feel free to contact us for further questions.
+
+## Build the Project
+
+`./mvnw clean install`
+
+## Run the Spring Boot Application
+
+`./mvnw spring-boot:run`
+
+## DB
+
+http://localhost:8080/h2-console
+
+## UI
+> cd frontend
+
+> npm run start
+
 
 ## Development
 
@@ -35,8 +51,6 @@ environment variable when running the container.
 mvnw spring-boot:build-image -Dspring-boot.build-image.imageName=craft-demo/crowdfunding
 ```
 
-## Further readings
+ 
 
-* [Maven docs](https://maven.apache.org/guides/index.html)  
-* [Spring Boot reference](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)  
-* [Spring Data JPA reference](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)  
+

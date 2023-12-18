@@ -1,5 +1,6 @@
 package craft_demo.crowdfunding.rest;
 
+import craft_demo.crowdfunding.model.UserCredentials;
 import craft_demo.crowdfunding.model.UserDTO;
 import craft_demo.crowdfunding.service.UserService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -71,6 +72,15 @@ public class UserResource {
     public ResponseEntity<Void> deleteUser(@PathVariable(name = "username") final String username) {
         userService.delete(username);
         return ResponseEntity.noContent().build();
+    }
+
+     @PostMapping("/login")
+    public boolean login(@RequestBody UserCredentials credentials) {
+        String username = credentials.getUsername();
+        String password = credentials.getPassword();
+
+        // Check if the username and password combination is correct
+        return userService.isValidLogin(username, password);
     }
 
 }
