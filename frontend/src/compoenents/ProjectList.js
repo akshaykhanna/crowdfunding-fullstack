@@ -13,7 +13,6 @@ const ProjectList = ({
   fetchProjects,
 }) => {
   const username = useSelector((state) => state.auth.username);
-  console.log("showMyProjectsOnly:", showMyProjectsOnly, username);
   useEffect(() => {
     showMyProjectsOnly ? fetchProjects(username) : fetchProjects();
   }, [username, showMyProjectsOnly, fetchProjects]);

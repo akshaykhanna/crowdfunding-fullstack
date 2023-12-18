@@ -17,7 +17,6 @@ const ProductItem = ({ project, username }) => {
   };
 
   const handleEdit = () => {
-    console.log("Edit clicked for project:", project.name);
     // Add your edit logic here
   };
 

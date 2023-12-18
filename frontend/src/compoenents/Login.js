@@ -9,7 +9,6 @@ const Login = ({auth}) => {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const dispatch = useDispatch();
-  console.log(auth);
 
   const handleLoginButtonClick = () => {
     if (auth.isAuthenticated) {

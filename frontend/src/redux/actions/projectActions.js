@@ -47,7 +47,6 @@ export const fetchProjects = (username) => {
     dispatch(fetchProjectsRequest());
     axios.get(`${API_BASE_URL}/api/projects${queryParam}`)
       .then((response) => {
-        console.log(response.data);
         const projects = response.data;
         dispatch(fetchProjectsSuccess(projects));
       })
@@ -76,7 +75,6 @@ export const createProject = (projectData) => {
     const state = getState();
     const username = state.auth.username;
     projectData.createdBy = username;
-    console.log(projectData);
     dispatch(createProjectRequest());
     axios
       .post(`${API_BASE_URL}/api/projects`, projectData) // Adjust the API endpoint

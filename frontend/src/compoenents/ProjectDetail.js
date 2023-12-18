@@ -12,7 +12,6 @@ import DonationModal from "./DonationModal";
 const ProjectDetail = () => {
   const { id: projectId } = useParams();
   const [showDonateModal, setShowDonateModal] = useState(false);
-  console.log("id: ", projectId);
   const dispatch = useDispatch();
   const project = useSelector((state) => state.project.project);
   const donations = useSelector((state) => state.donation.donations);
