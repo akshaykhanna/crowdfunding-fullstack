@@ -4,6 +4,7 @@ import craft_demo.crowdfunding.domain.Donation;
 import craft_demo.crowdfunding.domain.Project;
 import craft_demo.crowdfunding.domain.User;
 import craft_demo.crowdfunding.model.DonationDTO;
+import craft_demo.crowdfunding.model.ProjectDTO;
 import craft_demo.crowdfunding.repos.DonationRepository;
 import craft_demo.crowdfunding.repos.ProjectRepository;
 import craft_demo.crowdfunding.repos.UserRepository;
@@ -31,6 +32,13 @@ public class DonationService {
 
     public List<DonationDTO> findAll() {
         final List<Donation> donations = donationRepository.findAll(Sort.by("id"));
+        return donations.stream()
+                .map(donation -> mapToDTO(donation, new DonationDTO()))
+                .toList();
+    }
+
+     public List<DonationDTO> findByProjectId(Long projectId) {
+        final List<Donation> donations = donationRepository.findByProjectId(projectId);
         return donations.stream()
                 .map(donation -> mapToDTO(donation, new DonationDTO()))
                 .toList();

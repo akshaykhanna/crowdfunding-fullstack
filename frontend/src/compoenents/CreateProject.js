@@ -2,14 +2,16 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from 'react-redux';
-import { createProject } from '../redux/actions';
+import { createProject, fetchProjects } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProject = ({ createProject }) => {
+  const navigate = useNavigate();
   const [projectData, setProjectData] = useState({
     name: '',
     description: '',
-    requestedAmount: '',
-    collectedAmount: '',
+    requestedAmount: 0,
+    collectedAmount: 0,
   });
 
   const handleChange = (e) => {
@@ -27,9 +29,11 @@ const CreateProject = ({ createProject }) => {
     setProjectData({
       name: '',
       description: '',
-      requestedAmount: '',
-      collectedAmount: '',
+      requestedAmount: 0,
+      collectedAmount: 0,
     });
+    fetchProjects();
+    navigate('/');
   };
 
   return (
@@ -67,7 +71,7 @@ const CreateProject = ({ createProject }) => {
           />
         </Form.Group>
 
-        <Form.Group controlId="collectedAmount">
+        {/* <Form.Group controlId="collectedAmount">
           <Form.Label>Collected Amount</Form.Label>
           <Form.Control
             type="text"
@@ -75,7 +79,7 @@ const CreateProject = ({ createProject }) => {
             value={projectData.collectedAmount}
             onChange={handleChange}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Button className="mt-3" variant="primary" type="submit">
           Create Project
@@ -87,6 +91,7 @@ const CreateProject = ({ createProject }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   createProject: (projectData) => dispatch(createProject(projectData)),
+  fetchProjects: () => dispatch(fetchProjects()),
 });
 
 export default connect(null, mapDispatchToProps)(CreateProject);

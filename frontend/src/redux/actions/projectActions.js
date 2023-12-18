@@ -7,6 +7,25 @@ export const FETCH_PROJECTS_FAILURE = 'FETCH_PROJECTS_FAILURE';
 export const CREATE_PROJECT_REQUEST = 'CREATE_PROJECT_REQUEST';
 export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS';
 export const CREATE_PROJECT_FAILURE = 'CREATE_PROJECT_FAILURE';
+// Action Types
+export const FETCH_PROJECT_REQUEST = 'FETCH_PROJECT_REQUEST';
+export const FETCH_PROJECT_SUCCESS = 'FETCH_PROJECT_SUCCESS';
+export const FETCH_PROJECT_FAILURE = 'FETCH_PROJECT_FAILURE';
+
+// Action Creators
+export const fetchProjectRequest = () => ({
+  type: FETCH_PROJECT_REQUEST,
+});
+
+export const fetchProjectSuccess = (project) => ({
+  type: FETCH_PROJECT_SUCCESS,
+  payload: project,
+});
+
+export const fetchProjectFailure = (error) => ({
+  type: FETCH_PROJECT_FAILURE,
+  payload: error,
+});
 
 export const fetchProjectsRequest = () => ({
   type: FETCH_PROJECTS_REQUEST,
@@ -70,3 +89,18 @@ export const createProject = (projectData) => {
   };
 };
 
+// Async Action Creator
+export const fetchProjectById = (projectId) => {
+  return async (dispatch) => {
+    dispatch(fetchProjectRequest());
+
+    try {
+      const response = await axios.get(`${API_BASE_URL}/api/projects/${projectId}`);
+      const project = response.data;
+
+      dispatch(fetchProjectSuccess(project));
+    } catch (error) {
+      dispatch(fetchProjectFailure(error.message));
+    }
+  };
+};

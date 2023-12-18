@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,8 +30,12 @@ public class DonationResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<DonationDTO>> getAllDonations() {
-        return ResponseEntity.ok(donationService.findAll());
+    public ResponseEntity<List<DonationDTO>> getAllDonations(@RequestParam(required = false) Long projectId) {
+        if (projectId != null) {
+            return ResponseEntity.ok(donationService.findByProjectId(projectId));
+        } else {
+            return ResponseEntity.ok(donationService.findAll());
+        }
     }
 
     @GetMapping("/{id}")

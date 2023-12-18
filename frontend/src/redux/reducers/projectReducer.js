@@ -5,10 +5,14 @@ import {
   CREATE_PROJECT_REQUEST,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_FAILURE,
+  FETCH_PROJECT_REQUEST,
+  FETCH_PROJECT_SUCCESS,
+  FETCH_PROJECT_FAILURE,
 } from "../actions/projectActions";
 
 const initialState = {
   projects: [],
+  project: null,
   loading: false,
   error: "",
 };
@@ -49,6 +53,28 @@ const projectReducer = (state = initialState, action) => {
     case CREATE_PROJECT_FAILURE:
       return {
         ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case FETCH_PROJECT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+
+    case FETCH_PROJECT_SUCCESS:
+      return {
+        ...state,
+        project: action.payload,
+        loading: false,
+        error: "",
+      };
+
+    case FETCH_PROJECT_FAILURE:
+      return {
+        ...state,
+        project: null,
         loading: false,
         error: action.payload,
       };

@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreateProject from "./compoenents/CreateProject";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopNav from "./compoenents/TopNav";
+import ProjectDetail from "./compoenents/ProjectDetail";
 
 function App() {
   return (
@@ -15,8 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ProjectList />} />
             <Route path="/my-projects" element={<ProjectList showMyProjectsOnly/>} />
-            <Route path="/projects/:id" element={<ProjectList showMyProjectsOnly/>} />
-            <Route path="/create" element={<CreateProject />}/>
+            <Route path="/projects/:id" element={<ProjectDetail />} />
             <Route path="/create" element={<CreateProject />}/>
           </Routes>
         </Router>
